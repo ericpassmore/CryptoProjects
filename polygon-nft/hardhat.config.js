@@ -1,3 +1,6 @@
+require('dotenv').config();
+const PRIVATE_KEY = process.env.PRIVATE_KEY;
+
 require("@nomiclabs/hardhat-waffle");
 
 // This is a sample Hardhat task. To learn how to create your own go to
@@ -15,7 +18,40 @@ task("accounts", "Prints the list of accounts", async (taskArgs, hre) => {
 
 /**
  * @type import('hardhat/config').HardhatUserConfig
+ * orig
+ module.exports = {
+   solidity: "0.8.4",
+ };
+ https://rpc-endpoints.superfluid.dev/mumbai
+
  */
+
 module.exports = {
-  solidity: "0.8.4",
-};
+  defaultNetwork: "matic",
+  networks: {
+    hardhat: {
+    },
+    matic: {
+      url: "https://rpc-mumbai.maticvigil.com",
+      accounts: [PRIVATE_KEY]
+    }
+  },
+  solidity: {
+    version: "0.8.0",
+    settings: {
+      optimizer: {
+        enabled: true,
+        runs: 200
+      }
+    }
+  },
+  paths: {
+    sources: "./contracts",
+    tests: "./test",
+    cache: "./cache",
+    artifacts: "./artifacts"
+  },
+  mocha: {
+    timeout: 20000
+  }
+}
