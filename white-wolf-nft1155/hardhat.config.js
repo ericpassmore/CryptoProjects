@@ -3,6 +3,14 @@ const PRIVATE_KEY = process.env.PRIVATE_KEY;
 
 require("@nomiclabs/hardhat-waffle");
 
+const needsInfura = process.env.npm_config_argv &&
+      process.env.npm_config_argv.includes('PRIVATE_KEY');
+
+if ((!PRIVATE_KEY) && needsInfura) {
+  console.error('Please set a private key.');
+  process.exit(0);
+}
+
 /**
  * @type import('hardhat/config').HardhatUserConfig
  * orig

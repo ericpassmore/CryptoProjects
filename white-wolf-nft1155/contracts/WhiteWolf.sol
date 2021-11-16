@@ -13,8 +13,8 @@ contract WhiteWolf is ERC1155, Ownable {
   // max supply for collectable token
   uint256 public constant WWOLF_LIFETIME_SUPPLY = 500;
   // name and symbol for collectable token on OpenSea
-  bytes32 public name = "WhiteWolf";
-  bytes32 public symbol = "WWOLF";
+  string public name = "WhiteWolf";
+  string public symbol = "WWOLF";
 
   /**
    * Require msg.sender to match address passed in at constructor
